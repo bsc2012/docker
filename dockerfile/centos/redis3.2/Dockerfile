@@ -1,4 +1,4 @@
-FROM centos:6
+FROM centos6-gcc
 
 MAINTAINER bas2012 "13322808776@189.cn"
 
@@ -15,4 +15,6 @@ RUN ["make"]
 ENV REDIS_HOME /usr/share/redis-3.2.11
 ENV PATH $PATH:$REDIS_HOME/src
 
-CMD redis-server &
+EXPOSE 6379
+
+CMD ["redis-server"]
