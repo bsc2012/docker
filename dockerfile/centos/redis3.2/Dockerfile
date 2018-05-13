@@ -10,6 +10,8 @@ RUN tar xzf redis-3.2.11.tar.gz -C /usr/share/ && rm -rf redis-3.2.11.tar.gz
 
 WORKDIR /usr/share/redis-3.2.11
 
+RUN mkdir conf && cp redis.conf conf/
+
 RUN ["make"]
 
 ENV REDIS_HOME /usr/share/redis-3.2.11
@@ -17,4 +19,4 @@ ENV PATH $PATH:$REDIS_HOME/src
 
 EXPOSE 6379
 
-CMD ["redis-server"]
+CMD ["redis-server","conf/redis.conf"]
