@@ -12,6 +12,8 @@ WORKDIR /usr/share/redis-3.2.11
 
 RUN mkdir conf && cp redis.conf conf/
 
+RUN mkdir data && sed -i 's/dir \.\//dir \/usr\/share\/redis-3.2.11\/data\//g' conf/redis.conf
+
 RUN ["make"]
 
 ENV REDIS_HOME /usr/share/redis-3.2.11
