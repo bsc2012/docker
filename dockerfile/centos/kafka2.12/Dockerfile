@@ -1,4 +1,4 @@
-FROM centos:6
+FROM centos6-jdk:8
 
 MAINTAINER bsc2012 "13322808776@189.cn"
 
