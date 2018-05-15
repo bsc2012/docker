@@ -13,4 +13,6 @@ ENV PATH $PATH:$KAFKA_HOME/bin
 
 WORKDIR /usr/share/kafka_2.12-1.1.0
 
+EXPOSE 9092
+
 CMD kafka-server-start.sh config/server.properties
