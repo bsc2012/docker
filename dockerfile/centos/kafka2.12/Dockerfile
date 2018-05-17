@@ -13,12 +13,8 @@ ENV PATH $PATH:$KAFKA_HOME/bin
 
 WORKDIR /usr/share/kafka_2.12-1.1.0
 
-ARG HOST_IP
-
-RUN sed -i "s/#advertised\.listeners=PLAINTEXT:\/\/your\.host\.name:9092/advertised\.listeners=PLAINTEXT:\/\/${HOST_IP:-localhost}:9092/g" config/server.properties
-
-RUN sed -i "s/zookeeper\.connect=localhost:2181/zookeeper\.connect=${HOST_IP:-localhost}:2181/g" config/server.properties
-
 EXPOSE 9092
 
-CMD kafka-server-start.sh config/server.properties
+CMD sed -i "s/#advertised\.listeners=PLAINTEXT:\/\/your\.host\.name:9092/advertised\.listeners=PLAINTEXT:\/\/${AD_L:-localhost}:9092/g" config/server.properties \
+        && sed -i "s/zookeeper\.connect=localhost:2181/zookeeper\.connect=${ZK_C:-localhost}:2181/g" config/server.properties \
+	&& kafka-server-start.sh config/server.properties
